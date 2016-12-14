@@ -1,0 +1,143 @@
+body {
+	overflow: hidden;
+	background: url(/images/base.png) cover no-repeat center center fixed;
+}
+
+.loading {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	background-color: black;
+	text-align: center;
+	color: white;
+	font-size: 50px;
+}
+
+.loading-div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.hearthstone-background {
+	background: url(/images/base.png) center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100vh;
+	z-index: 2;
+}
+
+.cards-container {
+	margin-left: 500px;
+	width: 855px;
+	height: 805px;
+}
+
+.pack {
+	position: fixed;
+	top: 310px;
+	left: 260px;
+	user-select: none;
+}
+
+.pack_open {
+	position: absolute;
+	width: 1542px;
+	height: 812px;
+	display: none;
+}
+
+.card-container {
+	width: 170px;
+	height: 252px;
+	display: inline-block;
+	position: relative;
+	perspective: 800px;
+}
+
+.card {
+	width: 156px;
+	position: absolute;
+	border: none;
+	transform-style: preserve-3d;
+	transition: transform 1s;
+}
+
+.card img {
+	margin: 0;
+	display: block;
+	position: absolute;
+	backface-visibility: hidden;
+}
+
+.card .back {
+	transform: rotateY( 180deg );
+}
+
+.card.flipped {
+	transform: rotateY( 180deg );
+}
+
+#card0 {
+	position: relative;
+	top: 181px;
+	left: 110px;
+}
+
+#card1 {
+	position: relative;
+	top: 103px;
+	left: 162px;
+}
+
+#card2 {
+	position: relative;
+	top: 181px;
+	left: 235px;
+}
+
+#card3 {
+	position: relative;
+	top: 493px;
+	left: -45px;
+}
+
+#card4 {
+	position: relative;
+	top: 484px;
+	left: -472px;
+}
+
+.front:hover {
+	transform: scale(1.1);
+}
+
+.done {
+	background-image: url('../images/done.png');
+	background-repeat: no-repeat;
+	width: 175px;
+	height: 104px;
+	position: relative;
+	top: 110px;
+	left: 310px;
+	margin-left: 22px;
+	margin-right: -55px;
+	z-index: 5;
+	opacity: 0;
+	display: none;
+}
+
+.visible {
+	opacity: 1;
+	transition: opacity 1.5s linear;
+}
+
+.github {
+	position: absolute;
+	top: 18px;
+	left: 62%;
+}
