@@ -14,7 +14,7 @@ body {
 }
 
 .loading-div {
-	position: absolute;
+	position: relative;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -32,20 +32,21 @@ body {
 }
 
 .cards-container {
-	margin-left: 500px;
-	width: 855px;
-	height: 805px;
+	margin-left: 31.289111389236545%;
+	width: 53.504380475594495%;
+	height: 100vh;
+	position: relative;
 }
 
 .pack {
-	position: fixed;
+	position: absolute;
 	top: 310px;
 	left: 260px;
 	user-select: none;
 }
 
 .pack_open {
-	position: absolute;
+	position: relative;
 	width: 1542px;
 	height: 812px;
 	display: none;
@@ -140,4 +141,13 @@ body {
 	position: absolute;
 	top: 18px;
 	left: 62%;
+}
+
+@media screen and (min-device-width: 1024px) and (max-device-height: 600px) {
+	.pack {
+		position: absolute;
+		top: 200px;
+		left: 100px;
+		user-select: none;
+	}
 }
