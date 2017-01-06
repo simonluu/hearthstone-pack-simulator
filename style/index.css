@@ -137,12 +137,6 @@ body {
 	transition: opacity 1.5s linear;
 }
 
-.github {
-	position: absolute;
-	top: 18px;
-	left: 62%;
-}
-
 @media screen and (min-device-width: 1024px) and (max-device-height: 600px) {
 	.pack {
 		position: absolute;
