@@ -24,6 +24,6 @@ module.exports = {
   	new webpack.optimize.UglifyJsPlugin()
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']
   }
 };
