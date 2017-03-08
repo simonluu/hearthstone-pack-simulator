@@ -122,7 +122,7 @@ class Hearthstone extends Component {
 				<div className="pack_hover" />
 				<div className="background" ref="background" />
 				<video ref="pack_open" className="pack_open">
-					<source src="../../sounds/open_pack.mp4" type="video/mp4" />
+					<source src="../../sounds/pack_open.mp4" type="video/mp4" />
 				</video>
 				<Image draggable="false" ref="pack" className="pack" src="../../images/pack.png" width="155px" height="212px" />
 				<div className="pack_hole" ref="pack_hole" />
