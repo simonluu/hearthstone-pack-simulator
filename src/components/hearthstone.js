@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import { Image } from 'react-bootstrap';
+import { FormControl, FormGroup, Image } from 'react-bootstrap';
 
 import CardContainer from '../containers/card_holder';
 import { pack_grab, pack_drop } from '../sounds';
@@ -12,7 +12,10 @@ class Hearthstone extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { x_pos: 0, y_pos: 0, background: 'url(/images/base.png)' };
+		this.state = {
+			x_pos: 0,
+			y_pos: 0
+		};
 
 		this.onMouseDown = this.onMouseDown.bind(this);
 		this.onMouseOver = this.onMouseOver.bind(this);
@@ -26,6 +29,11 @@ class Hearthstone extends Component {
 
 	componentDidMount() {
 		const pack = ReactDOM.findDOMNode(this.refs.pack);
+		const pack_hole = ReactDOM.findDOMNode(this.refs.pack_hole);
+		const background = ReactDOM.findDOMNode(this.refs.background);
+
+		pack_hole.style.top = "260px";
+		pack_hole.style.left = "707px";
 
 		pack.addEventListener('mouseover', this.onMouseOver);
 		pack.addEventListener('mouseout', this.onMouseOut);
@@ -34,7 +42,12 @@ class Hearthstone extends Component {
 
 		window.addEventListener('mouseup', () => {
 			window.removeEventListener('mousemove', this.movePack);
-			if (parseInt(pack.style.top) > 267 && parseInt(pack.style.left) > 813 && parseInt(pack.style.top) < 298 && parseInt(pack.style.left) < 832) {
+			background.style.opacity = 1;
+			if (parseInt(pack.style.top) > parseInt(pack_hole.style.top) - 10
+				&& parseInt(pack.style.left) > parseInt(pack_hole.style.top) - 10
+				&& parseInt(pack.style.top) < parseInt(pack_hole.style.top) + 10
+				&& parseInt(pack.style.left) < parseInt(pack.style.left) + 10) {
+				this.props.fetchCardInformation(ReactDOM.findDOMNode(this.refs.select).value);
 				pack.style.pointerEvents = "none";
 				// play the pack opening video
 				ReactDOM.findDOMNode(this.refs.pack_open).style.display = 'block';
@@ -44,9 +57,8 @@ class Hearthstone extends Component {
 				// play unselecting pack video
 				pack.style.transition = "all 1s ease 0s";
 			}
-			this.setState({ background: 'url(/images/base.png)' });
-			pack.style.top = "310px";
-			pack.style.left = "260px";
+			pack.style.top = "247px";
+			pack.style.left = "200px";
 		});
 	}
 
@@ -88,9 +100,11 @@ class Hearthstone extends Component {
 
 	onMouseDown(e) {
 		const pack = ReactDOM.findDOMNode(this.refs.pack);
+		const background = ReactDOM.findDOMNode(this.refs.background);
+		background.style.opacity = 0;
 		pack_grab.volume = .3;
 		pack_grab.play();
-		this.setState({ x_pos: e.clientX - pack.offsetLeft, y_pos: e.clientY - pack.offsetTop, background: 'url(/images/base-pack_hold.png)' });
+		this.setState({ x_pos: e.clientX - pack.offsetLeft, y_pos: e.clientY - pack.offsetTop });
 		pack.style.transform = "none";
 		window.addEventListener('mousemove', this.movePack);
 	}
@@ -104,16 +118,31 @@ class Hearthstone extends Component {
 
 	render() {
 		return (
-			<div className="hearthstone-background" style={{ backgroundImage: this.state.background }}>
+			<div className="wrapper">
+				<div className="pack_hover" />
+				<div className="background" ref="background" />
 				<video ref="pack_open" className="pack_open">
 					<source src="../../sounds/open_pack.mp4" type="video/mp4" />
 				</video>
-				<Image draggable="false" ref="pack" className="pack" src="../../images/msog_pack.png" width="186px" height="243px" />
+				<Image draggable="false" ref="pack" className="pack" src="../../images/pack.png" width="155px" height="212px" />
+				<div className="pack_hole" ref="pack_hole" />
 				<CardContainer />
+				<FormGroup className="select_expansion">
+					<FormControl ref="select" componentClass="select">
+						<option value="Classic">Classic</option>
+						<option value="Goblins vs Gnomes">Goblins vs. Gnomes (Wild)</option>
+						<option value="The Grand Tournament">The Grand Tournament</option>
+						<option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
+						<option selected="selected" value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
+					</FormControl>
+				</FormGroup>
 			</div>
 		);
 	}
 }
+
+				// <Image draggable="false" ref="pack" className="pack" src="../../images/msog_pack.png" width="186px" height="243px" />
+				// <CardContainer />
 
 // width 1542px
 // height 812px

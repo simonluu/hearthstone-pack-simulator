@@ -7,8 +7,9 @@ const config = {
 	headers: { 'X-Mashape-Key': 'i4BEtXsQLXmshazvYZg0HYAGEEoWp1weej2jsnSvQVWvOhknjd'}
 };
 
-export function fetchCardInformation() {
-	var request = axios.get('https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/Mean%20Streets%20of%20Gadgetzan?collectible=1', config);
+export function fetchCardInformation(expansion) {
+	var encodedExpansion = encodeURIComponent(expansion)
+	var request = axios.get(`https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/${encodedExpansion}?collectible=1`, config);
 	
 	return {
 		type: FETCH_CARDS,

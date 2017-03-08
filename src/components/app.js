@@ -26,6 +26,7 @@ export default class App extends Component {
 
 		return (
 			<div className="main_application">
+				<div className="frame" />
 				<Hearthstone />
 			</div>
 		);

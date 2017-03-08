@@ -26,10 +26,6 @@ class CardContainer extends Component {
 		return this.state.revealed == nextState.revealed || this.props.cards != nextProps.cards || this.props.visibility != nextProps.visibility;
 	}
 
-	componentDidMount() {
-		this.props.fetchCardInformation();
-	}
-
 	sortCards() {
 		const commonArray = [];
 		const rareArray = [];
@@ -49,9 +45,10 @@ class CardContainer extends Component {
 		return [commonArray, rareArray, epicArray, legendaryArray];
 	}
 
-	handleClick(e, card, cardId, foil, common, rare, epic, legendary) {
+	handleClick(e, card, cardId, glowId, foil, common, rare, epic, legendary) {
 		let sound;
 		const done_button = ReactDOM.findDOMNode(this.refs.done);
+		document.getElementById(glowId).style.boxShadow = 'none';
 		// need to find react way to implement this
 		document.getElementById(`${e.target.id}`).className += " flipped";
 
@@ -84,12 +81,12 @@ class CardContainer extends Component {
 		}	
 	}
 
-	handleRegularClick(e, card, cardId) {
-		this.handleClick(e, card, cardId, false, null, rare, epic, legendary);
+	handleRegularClick(e, card, cardId, glowId) {
+		this.handleClick(e, card, cardId, glowId, false, null, rare, epic, legendary);
 	}
 
-	handleGoldenClick(e, card, cardId) {
-		this.handleClick(e, card, cardId, true, golden_common, golden_rare, golden_epic, golden_legendary);
+	handleGoldenClick(e, card, cardId, glowId) {
+		this.handleClick(e, card, cardId, glowId, true, golden_common, golden_rare, golden_epic, golden_legendary);
 	}
 
 	handleDoneClick() {
@@ -107,42 +104,43 @@ class CardContainer extends Component {
 		this.setState({ revealed: 0 });
 	}
 
-	cardHover(card, cardId) {
-		const glow = document.getElementById(cardId);
+	cardHover(card, cardId, glowId) {
+		const glow = document.getElementById(glowId);
 		const sound = mouse_over.cloneNode(true);
 
 		if (!document.getElementById(cardId.split('card')[1]).classList.contains('flipped')) {
 			sound.volume = .2;
 			sound.play();
 			if (card.rarity == "Rare") {
-				glow.style.boxShadow = '0px 0px 75px #0066FF';
+				glow.style.boxShadow = '0px 0px 100px #0066FF';
 			} else if (card.rarity == "Epic") {
-				glow.style.boxShadow = '0px 0px 75px #CC33FF';
+				glow.style.boxShadow = '0px 0px 100px #CC33FF';
 			} else if (card.rarity == "Legendary") {
-				glow.style.boxShadow = '0px 0px 75px #FF8000';
+				glow.style.boxShadow = '0px 0px 100px #FF8000';
 			}
 		}
 	}
 
-	cardHoverOut(card, cardId) {
+	cardHoverOut(card, cardId, glowId) {
 		const sound = mouse_away.cloneNode(true);
 		if (!document.getElementById(cardId.split('card')[1]).classList.contains('flipped')) {
 			sound.volume = .2;
 			sound.play();
 		}
-		document.getElementById(cardId).style.boxShadow = 'none';
+		document.getElementById(glowId).style.boxShadow = 'none';
 	}
 
 	renderRegularImage(cards, raritySize, rarity) {
 		const card_index = Math.floor(Math.random() * (raritySize));
 		const cards_length = cards.length;
 		cards.push(
-			<div className="card-container" id={`card${cards_length}`}
-				 onMouseOver={() => {this.cardHover(rarity[card_index], `card${cards_length}`)}}
-				 onMouseOut={() => {this.cardHoverOut(rarity[card_index], `card${cards_length}`)}}>
+			<div className="card_container" id={`card${cards_length}`}
+				 onMouseOver={() => {this.cardHover(rarity[card_index], `card${cards_length}` , `glow${cards_length}`)}}
+				 onMouseOut={() => {this.cardHoverOut(rarity[card_index], `card${cards_length}` , `glow${cards_length}`)}}>
+				<div className="card_glow" id={`glow${cards_length}`} />
 				<div className="card" id={`${cards_length}`}>
-					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleRegularClick(e, rarity[card_index], `card${cards_length}`)}} src="../images/classic.png" width="170px" height="252px" />
-					<Image draggable="false" className="back" src={rarity[card_index].img} width="170px" height="252px" />
+					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleRegularClick(e, rarity[card_index], `card${cards_length}`, `glow${cards_length}`)}} src="../images/classic.png" width="200px" height="307px" />
+					<Image draggable="false" className="back" src={rarity[card_index].img} width="200px" height="307px" />
 				</div>
 			</div>
 		);		
@@ -152,12 +150,13 @@ class CardContainer extends Component {
 		const card_index = Math.floor(Math.random() * (raritySize));
 		const cards_length = cards.length;
 		cards.push(
-			<div className="card-container" id={`card${cards_length}`}
-				 onMouseOver={() => {this.cardHover(rarity[card_index], `card${cards_length}`)}}
-				 onMouseOut={() => {this.cardHoverOut(rarity[card_index], `card${cards_length}`)}}>
+			<div className="card_container" id={`card${cards_length}`}
+				 onMouseOver={() => {this.cardHover(rarity[card_index], `card${cards_length}` , `glow${cards_length}`)}}
+				 onMouseOut={() => {this.cardHoverOut(rarity[card_index], `card${cards_length}` , `glow${cards_length}`)}}>
+				<div className="card_glow" id={`glow${cards_length}`} />
 				<div className="card" id={`${cards_length}`}>
-					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleGoldenClick(e, rarity[card_index], `card${cards_length}`)}} src="../images/classic.png" width="170px" height="252px" />
-					<Image draggable="false" className="back" src={rarity[card_index].imgGold} width="170px" height="252px" />
+					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleGoldenClick(e, rarity[card_index], `card${cards_length}`, `glow${cards_length}`)}} src="../images/classic.png" width="200px" height="307px" />
+					<Image draggable="false" className="back" src={rarity[card_index].imgGold} width="200px" height="307px" />
 				</div>
 			</div>
 		);		
@@ -209,27 +208,11 @@ class CardContainer extends Component {
 		return cards;
 	}
 
-	renderDoneButton() {
-		return (
-			<div ref="done" className="done" onClick={() => {this.handleDoneClick()}}></div>
-		);
-	}
-
 	render() {
-		if (!this.props.cards) {
-			return (
-				<div className="loading">
-					<div className="loading-div">
-						Loading....
-					</div>
-				</div>
-			)
-		}
-
 		return (
-			<div className="cards-container" style={{ opacity: this.props.visibility.opacity, visibility: this.props.visibility.visible }}>
-				{this.renderFiveCards()}
-				{this.renderDoneButton()}
+			<div className="card_holder" style={{ opacity: this.props.visibility.opacity, visibility: this.props.visibility.visible }}>
+				{this.props.cards ? this.renderFiveCards() : <div className="noCards" />}
+				<div ref="done" className="done" onClick={() => {this.handleDoneClick()}} />
 			</div>
 		);
 	}
