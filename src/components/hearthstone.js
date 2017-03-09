@@ -141,21 +141,8 @@ class Hearthstone extends Component {
 	}
 }
 
-				// <Image draggable="false" ref="pack" className="pack" src="../../images/msog_pack.png" width="186px" height="243px" />
-				// <CardContainer />
-
-// width 1542px
-// height 812px
-
 function mapStateToProps(state) {
 	return { visibility: state.visibility };
 }
 
 export default connect(mapStateToProps, actions)(Hearthstone);
-
-// <Image draggable="false" className="position-pack" src="../../images/msog_pack.png" />
-
-					// <video className="pack_open" preload="auto">
-					// 	<source src="../../sounds/pack_burst.webm" type="video/webm" />
-					// 	<source src="../../sounds/pack_burst.mp4" type="video/mp4" />
-					// </video>
