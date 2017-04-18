@@ -131,9 +131,10 @@ class Hearthstone extends Component {
 					<FormControl ref="select" componentClass="select">
 						<option value="Classic">Classic</option>
 						<option value="Goblins vs Gnomes">Goblins vs. Gnomes (Wild)</option>
-						<option value="The Grand Tournament">The Grand Tournament</option>
+						<option value="The Grand Tournament">The Grand Tournament (Wild)</option>
 						<option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
-						<option selected="selected" value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
+						<option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
+						<option selected="selected" value="Journey to Un'Goro">Journey to Un'Goro</option>
 					</FormControl>
 				</FormGroup>
 			</div>
