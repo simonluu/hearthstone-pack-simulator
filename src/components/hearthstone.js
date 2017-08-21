@@ -134,7 +134,8 @@ class Hearthstone extends Component {
 						<option value="The Grand Tournament">The Grand Tournament (Wild)</option>
 						<option value="Whispers of the Old Gods">Whispers of the Old Gods</option>
 						<option value="Mean Streets of Gadgetzan">Mean Streets of Gadgetzan</option>
-						<option selected="selected" value="Journey to Un'Goro">Journey to Un'Goro</option>
+						<option value="Journey to Un'Goro">Journey to Un'Goro</option>
+						<option selected="selected" value="Knights of the Frozen Throne">Knights of the Frozen Throne</option>
 					</FormControl>
 				</FormGroup>
 			</div>
