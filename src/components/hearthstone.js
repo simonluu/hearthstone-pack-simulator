@@ -44,7 +44,7 @@ class Hearthstone extends Component {
 			window.removeEventListener('mousemove', this.movePack);
 			background.style.opacity = 1;
 			if (parseInt(pack.style.top) > parseInt(pack_hole.style.top) - 10
-				&& parseInt(pack.style.left) > parseInt(pack_hole.style.top) - 10
+				&& parseInt(pack.style.left) > parseInt(pack_hole.style.left) - 10
 				&& parseInt(pack.style.top) < parseInt(pack_hole.style.top) + 10
 				&& parseInt(pack.style.left) < parseInt(pack.style.left) + 10) {
 				this.props.fetchCardInformation(ReactDOM.findDOMNode(this.refs.select).value);
