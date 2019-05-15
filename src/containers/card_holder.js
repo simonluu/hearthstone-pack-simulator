@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from "prop-types";
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { Image } from 'react-bootstrap';
@@ -18,6 +19,8 @@ import * as actions from '../actions';
 class CardContainer extends Component {
 	constructor(props) {
 		super(props);
+
+		this.done = React.createRef();
 
 		this.state = { revealed: 0, boxShadow: "none" };
 	}
@@ -105,7 +108,7 @@ class CardContainer extends Component {
 
 	handleClick(e, card, cardId, glowId, foil, common, rare, epic, legendary) {
 		let sound;
-		const done_button = ReactDOM.findDOMNode(this.refs.done);
+		const done_button = ReactDOM.findDOMNode(this.done.current);
 		document.getElementById(glowId).style.boxShadow = 'none';
 		// need to find react way to implement this
 		document.getElementById(`${e.target.id}`).className += " flipped";
@@ -148,7 +151,7 @@ class CardContainer extends Component {
 	}
 
 	handleDoneClick() {
-		const done_button = ReactDOM.findDOMNode(this.refs.done);
+		const done_button = ReactDOM.findDOMNode(this.done.current);
 		done_button.style.display = 'none';
 		done_button.className = done_button.className.replace( /(?:^|\s)visible(?!\S)/g , '' );
 		done_press.volume = .2;
@@ -192,7 +195,7 @@ class CardContainer extends Component {
 	renderRegularImage(pack, card) {
 		const cards_length = pack.length;
 		pack.push(
-			<div className="card_container" id={`card${cards_length}`}
+			<div key={`card${cards_length}`} className="card_container" id={`card${cards_length}`}
 				 onMouseOver={() => {this.cardHover(card, `card${cards_length}` , `glow${cards_length}`)}}
 				 onMouseOut={() => {this.cardHoverOut(card, `card${cards_length}` , `glow${cards_length}`)}}>
 				<div className="card_glow" id={`glow${cards_length}`} />
@@ -207,7 +210,7 @@ class CardContainer extends Component {
 	renderGoldenImage(pack, card) {
 		const cards_length = pack.length;
 		pack.push(
-			<div className="card_container" id={`card${cards_length}`}
+			<div key={`card${cards_length}`} className="card_container" id={`card${cards_length}`}
 				 onMouseOver={() => {this.cardHover(card, `card${cards_length}` , `glow${cards_length}`)}}
 				 onMouseOut={() => {this.cardHoverOut(card, `card${cards_length}` , `glow${cards_length}`)}}>
 				<div className="card_glow" id={`glow${cards_length}`} />
@@ -236,7 +239,7 @@ class CardContainer extends Component {
 		return (
 			<div className="card_holder" style={{ opacity: this.props.visibility.opacity, visibility: this.props.visibility.visible }}>
 				{this.props.status.set  && this.props.pack.length > 0 ? this.renderFiveCards() : <div className="noCards" />}
-				<div ref="done" className="done" onClick={() => {this.handleDoneClick()}} />
+				<div ref={this.done} className="done" onClick={() => {this.handleDoneClick()}} />
 			</div>
 		);
 	}

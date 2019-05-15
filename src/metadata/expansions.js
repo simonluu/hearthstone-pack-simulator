@@ -41,7 +41,6 @@ export default [
 	},
 	{
 		value: "Rastakhan's Rumble",
-		name: "Rastakhan's Rumble",
-		selected: "selected"
+		name: "Rastakhan's Rumble"
 	}
 ]
