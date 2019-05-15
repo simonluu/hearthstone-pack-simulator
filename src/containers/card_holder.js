@@ -7,6 +7,7 @@ import { Image } from 'react-bootstrap';
 import { common_turn_over, rare_turn_over, epic_turn_over, legendary_turn_over,
 	rare, epic, legendary, golden_common, golden_rare, golden_epic, golden_legendary,
 	done_appear, done_press, mouse_over, mouse_away } from '../sounds';
+import cardBack from '../images/classic.png';
 import * as actions from '../actions';
 
 // 69.29% Common, 21.78% Rare, 4.49% Epic, 1.02% Legendary
@@ -200,7 +201,7 @@ class CardContainer extends Component {
 				 onMouseOut={() => {this.cardHoverOut(card, `card${cards_length}` , `glow${cards_length}`)}}>
 				<div className="card_glow" id={`glow${cards_length}`} />
 				<div className="card" id={`${cards_length}`}>
-					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleRegularClick(e, card, `card${cards_length}`, `glow${cards_length}`)}} src="../images/classic.png" width="200px" height="307px" />
+					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleRegularClick(e, card, `card${cards_length}`, `glow${cards_length}`)}} src={cardBack} width="200px" height="307px" />
 					<Image draggable="false" className="back" src={card.img} width="200px" height="307px" />
 				</div>
 			</div>
@@ -215,7 +216,7 @@ class CardContainer extends Component {
 				 onMouseOut={() => {this.cardHoverOut(card, `card${cards_length}` , `glow${cards_length}`)}}>
 				<div className="card_glow" id={`glow${cards_length}`} />
 				<div className="card" id={`${cards_length}`}>
-					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleGoldenClick(e, card, `card${cards_length}`, `glow${cards_length}`)}} src="../images/classic.png" width="200px" height="307px" />
+					<Image draggable="false" className="front" id={`${cards_length}`} onClick={(e) => {this.handleGoldenClick(e, card, `card${cards_length}`, `glow${cards_length}`)}} src={cardBack} width="200px" height="307px" />
 					<Image draggable="false" className="back" src={card.imgGold} width="200px" height="307px" />
 				</div>
 			</div>

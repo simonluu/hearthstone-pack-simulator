@@ -26,7 +26,7 @@ div, img {
 }
 
 .frame {
-	background: url(/images/frame.png);
+	background: url(../images/frame.png);
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -37,7 +37,7 @@ div, img {
 }
 
 .background {
-	background: url(/images/base.jpg) no-repeat center center fixed;
+	background: url(../images/base.jpg) no-repeat center center fixed;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -56,7 +56,7 @@ div, img {
 }
 
 .pack_hover {
-	background: url(/images/base_glow.jpg) no-repeat center center;
+	background: url(../images/base_glow.jpg) no-repeat center center;
 	position: absolute;
 	top: 50%;
 	left: 50%;

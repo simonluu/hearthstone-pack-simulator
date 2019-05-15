@@ -1,0 +1,226 @@
+html {
+	background-color: black;
+	height: 100vh;
+	overflow: hidden;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+div, img {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 768px;
+	width: 1366px;
+	margin-top: -384px;
+	margin-left: -683px;
+}
+
+.frame {
+	background: url(frame.png);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 888px;
+	width: 1530px;
+	margin-top: -444px;
+	margin-left: -765px;
+}
+
+.background {
+	background: url(base.jpg) no-repeat center center fixed;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 768px;
+	width: 1366px;
+	margin-top: -384px;
+	margin-left: -683px;
+}
+
+.pack {
+	display: block;
+	position: relative;
+	top: 247px;
+	left: 200px;
+	z-index: 2;
+}
+
+.pack_hover {
+	background: url(base_glow.jpg) no-repeat center center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 768px;
+	width: 1366px;
+	margin-top: -384px;
+	margin-left: -683px;
+
+}
+
+.pack_hole {
+	position: absolute;
+	top: 260px;
+	left: 707px;
+	height: 212px;
+	width: 155px;
+}
+
+.pack_open {
+	position: absolute;
+	display: none;
+	z-index: 0;
+}
+
+.card_holder {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 768px;
+	width: 1366px;
+	margin-top: -384px;
+	margin-left: -683px;
+}
+
+#card0 {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -332px;
+	margin-left: 8px;
+}
+
+#card1 {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -261px;
+	margin-left: -194px;
+}
+
+#card2 {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -254px;
+	margin-left: 223px;
+}
+
+#card3 {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: 18px;
+	margin-left: -108px;
+}
+
+#card4 {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: 26px;
+	margin-left: 127px;
+}
+
+.card_container {
+	height: 307px;
+	width: 200px;
+	display: inline-block;
+	position: relative;
+	perspective: 800px;
+}
+
+.card {
+	border: none;
+	transform-style: preserve-3d;
+	transition: transform 1s;
+}
+
+.card img {
+	margin: 0;
+	display: block;
+	position: absolute;
+	backface-visibility: hidden;
+}
+
+.card_glow {
+	position: absolute;
+	top: 43px;
+	left: 27px;
+	height: 215px;
+	width: 145px;
+}
+
+.card .back {
+	transform: rotateY( 180deg );
+}
+
+.card.flipped {
+	transform: rotateY( 180deg );
+}
+
+.front:hover {
+	transform: scale(1.1);
+}
+
+.done {
+	background-image: url(done.png);
+	background-repeat: no-repeat;
+	height: 104px;
+	width: 175px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -55px;
+	margin-left: 22px;
+	z-index: 5;
+	opacity: 0;
+	display: none;
+}
+
+.visible {
+	opacity: 1;
+	transition: opacity 1.5s linear;
+}
+
+.select_expansion {
+	position: absolute;
+	top: 739px;
+	left: 50%;
+	width: 275px;
+}
+
+.select_expansion > select {
+	height: 26px !important;
+	padding: 0;
+}
+
+.loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 100vw;
+	transform: translate(-50%, -50%);
+}
+
+.loading-div {
+	text-align: center;
+	background-color: black;
+	color: red;
+	font-weight: bold;
+	font-size: 3em;
+}

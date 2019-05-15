@@ -6,6 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 import App from './components/app';
 import reducers from './reducers';
 import Async from './middlewares/async';
+import './style/index.css';
+import './favicon.ico';
 
 const createStoreWithMiddleware = applyMiddleware(Async)(createStore);
 

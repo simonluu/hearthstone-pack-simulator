@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { Form, Image } from 'react-bootstrap';
 
 import CardContainer from '../containers/card_holder';
-import { pack_grab, pack_drop } from '../sounds';
+import { pack_open, pack_grab, pack_drop } from '../sounds';
+import packImage from '../images/pack.png';
 
 import * as actions from '../actions';
 
@@ -144,9 +145,9 @@ class Hearthstone extends Component {
 				<div className="pack_hover" />
 				<div className="background" ref={this.background} />
 				<video ref={this.packOpen} className="pack_open">
-					<source src="../../sounds/pack_open.mp4" type="video/mp4" />
+					<source src={pack_open} type="video/mp4" />
 				</video>
-				<img draggable="false" ref={this.pack} className="pack" src="../../images/pack.png" width="155px" height="212px" />
+				<img draggable="false" ref={this.pack} className="pack" src={packImage} width="155px" height="212px" />
 				<div className="pack_hole" ref={this.packHole} />
 				<CardContainer />
                 <Form>
