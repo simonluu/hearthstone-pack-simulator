@@ -21,6 +21,10 @@ class App extends Component {
 
 	componentDidMount() {
 		if (!this.mobileAndTabletcheck()) {
+			alert("Your screen resolution is: " + screen.width + "x" + screen.height);
+			if (screen.width <= 1280 && screen.height <= 720) {
+				document.body.style.zoom = "67%";
+			}
 			expansions.map((expansion) => {
 				this.props.fetchCardInformation(expansion.value);
 			});
